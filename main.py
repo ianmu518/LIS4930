@@ -27,7 +27,7 @@ table02 = {
 } #Translation of all 64 possible codons into their amino acid or "STOP CODON"
 
 
-def transcription(): #replaces each character in data according to table01 and prints result
+def transcription(): #replaces each character in data according to table01 and prints result, simulating transcription of DNA
     rna_sequence = ""
 
     for i in range(0, len(data)): 
@@ -45,12 +45,12 @@ def translation(): #replaces each character in data according to table01 then tr
     rna_sequence = ""
     amino_acid_sequence = ""
 
-    for i in range(0, len(data)):
+    for i in range(0, len(data)): #replaces DNA sequence with complimentary RNA sequence characters
         if data[i] in table01.keys():
             rna_sequence += table01[data[i]]
 
     if len(rna_sequence) % 3 == 0: #If rna_sequence has a number of characters that are a multiple of three
-        for i in range(0, len(rna_sequence), 3):
+        for i in range(0, len(rna_sequence), 3): #replaces sets of three rna_sequence characters according to table02 and prints result, simulating translation of RNA
             codon = rna_sequence[i:i + 3]
             amino_acid_sequence += table02[codon]
         print("Translated Amino Acid polypeptide chain:")
