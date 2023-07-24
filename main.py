@@ -1,11 +1,11 @@
-file = open('sample_DNA.txt', 'r') #text file with a sequence of 'G', 'C', 'T', and 'A' characters
+file = open('sample_DNA.txt', 'r')  # text file with a sequence of 'G', 'C', 'T', and 'A' characters
 data = file.read()
 
 print("DNA sequence:")
 print(data)
 print()
 
-table01 = {'G': 'C', 'C': 'G', 'T': 'A', 'A': 'U'} #Changes of nucleotides during transcription
+table01 = {'G': 'C', 'C': 'G', 'T': 'A', 'A': 'U'}  # Changes of nucleotides during transcription
 
 table02 = {
     "UUU": "Phenylalanine-", "UUC": "Phenylalanine-", "UUA": "Leucine-", "UUG": "Leucine-",
@@ -24,10 +24,10 @@ table02 = {
     "GCU": "Alanine-", "GCC": "Alanine-", "GCA": "Alanine-", "GCG": "Alanine-",
     "GAU": "Aspartic Acid-", "GAC": "Aspartic Acid-", "GAA": "Glutamic Acid-", "GAG": "Glutamic Acid-",
     "GGU": "Glycine-", "GGC": "Glycine-", "GGA": "Glycine-", "GGG": "Glycine-"
-} #Translation of all 64 possible codons into their amino acid or "STOP CODON"
+}  # Translation of all 64 possible codons into their amino acid or "STOP CODON"
 
 
-def transcription(): #replaces each character in data according to table01 and prints result, simulating transcription of DNA
+def transcription():  # replaces each character in data according to table01 and prints result, simulating transcription of DNA
     rna_sequence = ""
 
     for i in range(0, len(data)): 
@@ -41,16 +41,16 @@ def transcription(): #replaces each character in data according to table01 and p
 transcription()
 
 
-def translation(): #replaces each character in data according to table01 then translates the result into a sequence of amino acids according to table02
+def translation():  # replaces each character in data according to table01 then translates the result into a sequence of amino acids according to table02
     rna_sequence = ""
     amino_acid_sequence = ""
 
-    for i in range(0, len(data)): #replaces DNA sequence with complimentary RNA sequence characters
+    for i in range(0, len(data)):  # replaces DNA sequence with complimentary RNA sequence characters
         if data[i] in table01.keys():
             rna_sequence += table01[data[i]]
 
-    if len(rna_sequence) % 3 == 0: #If rna_sequence has a number of characters that are a multiple of three
-        for i in range(0, len(rna_sequence), 3): #replaces sets of three rna_sequence characters according to table02 and prints result, simulating translation of RNA
+    if len(rna_sequence) % 3 == 0:  # If rna_sequence has a number of characters that are a multiple of three
+        for i in range(0, len(rna_sequence), 3):  # replaces sets of three rna_sequence characters according to table02 and prints result, simulating translation of RNA
             codon = rna_sequence[i:i + 3]
             amino_acid_sequence += table02[codon]
         print("Translated Amino Acid polypeptide chain:")
