@@ -30,12 +30,18 @@ table02 = {
 def transcription():  # replaces each character in data according to table01 and prints result, simulating transcription of DNA
     rna_sequence = ""
 
-    for i in range(0, len(data)): 
-        if data[i] in table01.keys():
-            rna_sequence += table01[data[i]]
-    print("RNA sequence:")
-    print(rna_sequence)
-    print()
+    if len(data) == 0:  # if data file is empty
+        print("data file is empty and DNA sequence could not be")
+        print("transcribed into RNA sequence.")
+        print()
+
+    if len(data) != 0:  # if data file is not empty
+        for i in range(0, len(data)):
+            if data[i] in table01.keys():
+                rna_sequence += table01[data[i]]
+        print("RNA sequence:")
+        print(rna_sequence)
+        print()
 
 
 transcription()
@@ -49,16 +55,21 @@ def translation():  # replaces each character in data according to table01 then 
         if data[i] in table01.keys():
             rna_sequence += table01[data[i]]
 
-    if len(rna_sequence) % 3 == 0:  # If rna_sequence has a number of characters that are a multiple of three
+    if len(rna_sequence) % 3 != 0:  # if rna_sequence has a number of characters that is not a multiple of three
+        print("RNA Sequence could not be translated into amino acids")
+        print("as the number of nucleotides in the sequence are not")
+        print("a multiple of three.")
+
+    if len(rna_sequence) == 0:  # if rna_sequence is empty
+        print("RNA Sequence is empty and could not be translated")
+        print("into amino acids.")
+
+    if len(rna_sequence) % 3 == 0 and len(rna_sequence) != 0:  # if rna_sequence has a number of characters that is a multiple of three and is not empty
         for i in range(0, len(rna_sequence), 3):  # replaces sets of three rna_sequence characters according to table02 and prints result, simulating translation of RNA
             codon = rna_sequence[i:i + 3]
             amino_acid_sequence += table02[codon]
         print("Translated Amino Acid polypeptide chain:")
         print(amino_acid_sequence)
-    else:
-        print("RNA Sequence could not be translated into amino acids")
-        print("as the number of nucleotides in the sequence are not")
-        print("a multiple of three.")
 
 
 translation()
